@@ -70,7 +70,7 @@ def write_hr(deg, Rlatt, hop_spinor, Filename='wannier90_hr.dat'):
         print(' '*10+str(hop_spinor.shape[1]),file=f)
         print(' '*9+str(deg.size),file=f)
         for ikpt in range(deg.size//15):
-            data = np.array2string(deg.flatten()[ikpt:ikpt+15], precision=1, separator='    ')
+            data = np.array2string(deg.flatten()[ikpt*15:(ikpt+1)*15], precision=1, separator='    ')
             print('    ',end='',file=f)
             print(data[1:-1],file=f)
         if deg.size%15 != 0:
@@ -78,8 +78,8 @@ def write_hr(deg, Rlatt, hop_spinor, Filename='wannier90_hr.dat'):
             print('    ',end='',file=f)
             print(data[1:-1],file=f)
         for ikpt in range(deg.size):
-            for iwan1 in range(24):
-                for iwan2 in range(24):
-                    print('%5d%5d%5d%5d%5d%12.6f%12.6f' \
+            for iwan1 in range(hop_spinor.shape[1]):
+                for iwan2 in range(hop_spinor.shape[2]):
+                    print('%5d %5d %5d %5d %5d %12.6f %12.6f' \
                     %(Rlatt[ikpt,0],Rlatt[ikpt,1],Rlatt[ikpt,2], iwan1+1, iwan2+1,\
                     hop_spinor[ikpt,iwan1,iwan2].real,hop_spinor[ikpt,iwan1,iwan2].imag),file=f)

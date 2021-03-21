@@ -137,9 +137,8 @@ def get_full_Hsoc(orb_chg, hop_spinor):
     '''
     generate full H_soc.
     '''
-    # # set up two atoms with d orbtials, first one's star at orbital number 3, second one at 8.
-    # orb_chg = [['d',[1,0,0],0.1,3],['d',[1,0,0],0.1,8]]
-
+    # set up two atoms with d orbtials, first one's star at orbital number 3, second one at 8.
+    #orb_chg = [['d',[1,0,0],0.1,3],['d',[1,0,0],0.1,8]]
     full_Hsoc = np.zeros([hop_spinor.shape[1],hop_spinor.shape[2]],dtype=np.complex64)
     for i in range(len(orb_chg)):
         Hsoc = gen_Hsoc(orb_chg[i][0], orb_chg[i][1])*orb_chg[i][2]
@@ -164,7 +163,6 @@ def get_full_Hsoc(orb_chg, hop_spinor):
         full_Hsoc[ud_s, ud_e] = Hsoc_ud
         full_Hsoc[du_s, du_e] = Hsoc_du
         full_Hsoc[dd_s, dd_e] = Hsoc_dd
-
     return full_Hsoc
 
 #%%
