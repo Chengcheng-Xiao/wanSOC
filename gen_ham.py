@@ -6,11 +6,11 @@ from wanSOC.helper import *
 from wanSOC.hamiltonian import *
 
 #%% generatr full hamiltonian form non-collinear hamiltonians
-hop_spinor_dn,Rlatt_dn,indR0_dn,deg_dn = read_hr('wannier90.dn_hr.dat', spin='dn')
-hop_spinor_up,Rlatt_up,indR0_up,deg_up = read_hr('wannier90.up_hr.dat', spin='up')
+hop_spinor_dn, Rlatt_dn, indR0_dn, deg_dn = read_hr('wannier90.dn_hr.dat', spin='dn')
+hop_spinor_up, Rlatt_up, indR0_up, deg_up = read_hr('wannier90.up_hr.dat', spin='up')
 
 # Sanity check
-assert Rlatt_dn.all()==Rlatt_up.all(), "Rreal-lattice hopping vecotr mismatch."
+assert Rlatt_dn.all()==Rlatt_up.all(), "Real-lattice hopping vecotr mismatch."
 assert indR0_dn==indR0_up, "home cell index mismatch."
 assert deg_dn.all()==deg_dn.all(), "degeneracy mismatch"
 
