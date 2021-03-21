@@ -1,12 +1,12 @@
 from __future__ import print_function
 import numpy as np
-from numpy.linalg import inv
 from wanSOC.basis import *
 
 # L matrices
 def MatLp(basis):
     '''
     <lm|L+|lm>
+    order l=3: -3 -2 -1 0 1 2 3 -> 0 1 2 3 4 5 6
     order l=1: -2 -1 0 1 2 -> 0 1 2 3 4
     order l=2: -1 0 1      -> 0 1 2
     '''
@@ -68,6 +68,17 @@ def trans_L_mat(orb):
                       [0,np.complex(0,np.sqrt(1/2.)),0,np.complex(0,np.sqrt(1/2.)),0],
                       [np.sqrt(1/2.),0,0,0,np.sqrt(1/2.)],
                       [np.complex(0,np.sqrt(1/2.)),0,0,0,np.complex(0,-np.sqrt(1/2.))]])
+    elif orb == 'f':
+        # old basis: -3 -2 -1 0 1 2 3
+        # new basis:
+        trans=np.mat([[0,0,0,1,0,0,0],
+                      [0,0,np.sqrt(1/2.),0,-np.sqrt(1/2.),0,0],
+                      [0,0,np.complex(0,np.sqrt(1/2.)),0,np.complex(0,np.sqrt(1/2.)),0,0],
+                      [0,np.sqrt(1/2.),0,0,0,np.sqrt(1/2.),0],
+                      [0,np.complex(0,np.sqrt(1/2.)),0,0,0,np.complex(0,-np.sqrt(1/2.)),0],
+                      [np.sqrt(1/2.),0,0,0,0,0,-np.sqrt(1/2.)],
+                      [np.complex(0,np.sqrt(1/2.)),0,0,0,0,0,np.complex(0,np.sqrt(1/2.))]])
+
     return trans.T
 
 
@@ -153,3 +164,6 @@ def get_full_Hsoc(orb_chg, hop_spinor):
         full_Hsoc[dd_s, dd_e] = Hsoc_dd
 
     return full_Hsoc
+
+#%%
+# print(gen_Hsoc('p', [0,0,1]))

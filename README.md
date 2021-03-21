@@ -6,10 +6,10 @@ Support:
 - spin-polarized/unpolarized systems.
 - change on-site SOC strength.
 - change spin quantization axis.
+- support `p`, `d` and `f` orbitals.
 
-limitations:
-- only support full-range m quantum numbers (e.g. l=1, m=-1, 0, 1)
-- only support `p`, `d` orbitals (as of now).
+Limitations:
+- only support full-range m quantum numbers (e.g. l=1, m=-1, 0, 1).
 
 ## tutorial
 Take a look at `gen_ham.py`.
