@@ -7,8 +7,8 @@ def MatLp(basis):
     '''
     <lm|L+|lm>
     order l=3: -3 -2 -1 0 1 2 3 -> 0 1 2 3 4 5 6
-    order l=1: -2 -1 0 1 2 -> 0 1 2 3 4
-    order l=2: -1 0 1      -> 0 1 2
+    order l=2: -2 -1 0 1 2 -> 0 1 2 3 4
+    order l=1: -1 0 1      -> 0 1 2
     '''
     MatL = np.zeros([len(basis),len(basis)],dtype=np.float64)
     # assert len(basis)==basis[0][0]
@@ -23,8 +23,9 @@ def MatLp(basis):
 def MatLm(basis):
     '''
     <lm|L-|lm>
-    order l=1: -2 -1 0 1 2 -> 0 1 2 3 4
-    order l=2: -1 0 1      -> 0 1 2
+    order l=3: -3 -2 -1 0 1 2 3 -> 0 1 2 3 4 5 6
+    order l=2: -2 -1 0 1 2 -> 0 1 2 3 4
+    order l=1: -1 0 1      -> 0 1 2
     '''
     MatL = np.zeros([len(basis),len(basis)],dtype=np.float64)
     # assert len(basis)==basis[0][0]
@@ -39,8 +40,9 @@ def MatLm(basis):
 def MatLz(basis):
     '''
     <lm|Lz|lm>
-    order l=1: -2 -1 0 1 2 -> 0 1 2 3 4
-    order l=2: -1 0 1      -> 0 1 2
+    order l=3: -3 -2 -1 0 1 2 3 -> 0 1 2 3 4 5 6
+    order l=2: -2 -1 0 1 2 -> 0 1 2 3 4
+    order l=1: -1 0 1      -> 0 1 2
     '''
     MatL = np.zeros([len(basis),len(basis)],dtype=np.float64)
     # assert len(basis)==basis[0][0]
