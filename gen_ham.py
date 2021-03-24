@@ -6,6 +6,8 @@ from wanSOC.helper import *
 from wanSOC.hamiltonian import *
 
 #%% generatr full hamiltonian form non-collinear hamiltonians
+#-----------------------
+
 hop_spinor_dn, Rlatt_dn, indR0_dn, deg_dn = read_hr('wannier90.dn_hr.dat', spin='dn')
 hop_spinor_up, Rlatt_up, indR0_up, deg_up = read_hr('wannier90.up_hr.dat', spin='up')
 
@@ -19,12 +21,17 @@ hop_spinor = hop_spinor_dn + hop_spinor_up
 
 
 #%% we have two atoms each with one set of d orbitals
+#-----------------------
 # [orbital_type,quantization_axis,strength/2,orbital_index(start from 1)]
+# here the first set of d orbitals starts at 3 the second set starts at 8.
 orb_chg=[['d',[0,0,1],0.1,3],['d',[0,0,1],0.1,8]]
 full_Hsoc=get_full_Hsoc(orb_chg, hop_spinor)
-# print(full_Hsoc)
-# add H_soc to full hamiltonian
+
+
+#%% add H_soc to full hamiltonian
+#-----------------------
 hop_spinor[indR0_dn] += full_Hsoc
 
-#%%
+#%% output final hamiltonian
+#-----------------------
 write_hr(deg_dn, Rlatt_dn, hop_spinor, Filename='wannier90_hr.dat')

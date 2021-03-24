@@ -2,7 +2,11 @@ from __future__ import print_function
 import numpy as np
 
 def read_hr(Filename='wannier90_hr.dat', spin='up'):
-    """Read wannier90_hr.dat."""
+    '''
+    Read in collinear wannier90_hr.dat and construct a full spinor Hamiltonion by 
+    filling the upper left (up) or lower right (down) block.
+    also return the index of the home cell which we will use to add Hsoc.
+    '''
     print('reading '+Filename+ ' ...')
     f=open(Filename,'r')
     data=f.readlines()

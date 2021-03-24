@@ -11,5 +11,5 @@ Support:
 Limitations:
 - only support full-range m quantum numbers (e.g. l=1, m=-1, 0, 1).
 
-## tutorial
+## Tutorial
 Take a look at `gen_ham.py`.

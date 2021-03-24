@@ -7,7 +7,7 @@ def printsocmat(orb,Msoc):
     elif orb=='d':
         norbs=5
     else:
-        print('can not recognize the orbital !')
+        print('orbital type not recognized.')
         exit()
     for i in range(2*norbs):
         for j in range(2*norbs):

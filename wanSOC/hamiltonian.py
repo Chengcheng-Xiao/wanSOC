@@ -3,6 +3,14 @@ import numpy as np
 from wanSOC.basis import *
 
 # L matrices
+#-----------------------
+# L matrices under |lm> basis are composed by:
+# \hat{L}_\pm Y_{l}^{m} &= \sqrt{(l \mp m)(l \pm m+1)} Y_{l}^{m \pm 1}
+# \hat{L}_z Y_{l}^{m}   &= mY_{l}^{m}
+# in <MatLp>, <MatLm>, <MatLz>.
+#
+# Then we transform the L matrices to real-spherical basis. (in <trans_L_mat>)
+
 def MatLp(basis):
     '''
     <lm|L+|lm>
@@ -83,6 +91,11 @@ def trans_L_mat(orb):
 
     return trans.T
 
+# L matrices
+#-----------------------
+# Pauli matrix under xyz basis is hard coded in <gen_Hsoc>
+# Then we transform it under new quantization axis basis using <trans_S_mat>.
+#
 
 def trans_S_mat(q_axis):
     '''
@@ -100,7 +113,9 @@ def trans_S_mat(q_axis):
     trans=np.mat([sp,sm])
     return trans.T
 
-# hamiltonian
+# SOC Hamiltonian
+#-----------------------
+
 def gen_Hsoc(orb, q_axis):
     '''
     generate H_soc.
@@ -132,6 +147,9 @@ def gen_Hsoc(orb, q_axis):
 
     Hsoc = np.kron(Sp, Lm) + np.kron(Sm, Lp) + np.kron(Sz, Lz)
     return Hsoc
+
+# Filling Hsoc to full Hamiltonian
+#-----------------------
 
 def get_full_Hsoc(orb_chg, hop_spinor):
     '''
@@ -165,5 +183,5 @@ def get_full_Hsoc(orb_chg, hop_spinor):
         full_Hsoc[dd_s, dd_e] = Hsoc_dd
     return full_Hsoc
 
-#%%
+#%% test Hsoc generation
 # print(gen_Hsoc('p', [0,0,1]))
